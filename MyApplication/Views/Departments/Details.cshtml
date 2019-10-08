@@ -1,0 +1,43 @@
+﻿@model MyApplication.Models.Departments
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Departments</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DeptName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeptName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NoOfEmp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoOfEmp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AvgAge)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AvgAge)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dept)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dept.EmployeeId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.DeptId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

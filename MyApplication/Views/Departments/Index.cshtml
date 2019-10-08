@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MyApplication.Models.Departments>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>Welcome to your Employee Register.</p>
+<p>This application records your company deaortments and allows you to perform CRUD(Create, Update & Delete) operations on their information.</p>
+<p>You can Edit, Update and Delete your departments information and save it all here.</p>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DeptName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoOfEmp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvgAge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dept)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeptName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoOfEmp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AvgAge)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dept.EmployeeId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.DeptId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.DeptId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.DeptId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

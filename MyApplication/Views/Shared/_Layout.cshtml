@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MyApplication</title>
+    <title>@ViewData["Title"] - Employee Register</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -33,6 +33,8 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Employees" asp-action="Index">Employees</a></li>
+                    <li><a asp-area="" asp-controller="Departments" asp-action="Index">Departments</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -42,7 +44,8 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2019 - MyApplication</p>
+            <p>&copy; @DateTime.Now.Year - Parth Bhavesh Kumar Bhatt, 200406685</p>
+            <p>&copy; Server-Side Scripting-ASP.NET, COMP2084</p>
         </footer>
     </div>
 
