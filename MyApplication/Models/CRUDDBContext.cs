@@ -10,7 +10,7 @@ namespace MyApplication.Models
         public virtual DbSet<Employees> Employees { get; set; }
 
         public CRUDDBContext(DbContextOptions<CRUDDBContext> options)
-            : base(options)
+            : base(options) 
         {
         }
 

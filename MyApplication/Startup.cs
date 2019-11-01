@@ -46,6 +46,19 @@ namespace MyApplication
             services.AddMvc();
         }
 
+        //enable google login
+        var ClientId = Configuration.GetSection("Google")["ClientId"];
+        var ClientSecret = Configuration.GetSection("Google")["ClientId"];
+
+        services.AddAuthentication() 
+            .AddGoogle(Options =>
+            {
+            options.ClientId = ClientId;
+            options.ClientSecret = ClientSecret;
+            }
+                                       );
+
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
