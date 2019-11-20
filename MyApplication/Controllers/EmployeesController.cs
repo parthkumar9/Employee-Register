@@ -21,6 +21,7 @@ namespace MyApplication.Controllers
         }
 
         // GET: Employees
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Employees.ToListAsync());

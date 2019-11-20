@@ -22,6 +22,7 @@ namespace MyApplication.Controllers
         }
 
         // GET: Departments
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var cRUDDBContext = _context.Departments.Include(d => d.Dept);

@@ -10,10 +10,13 @@
 <p>Welcome to your Employee Register.</p>
 <p>This application records your company deaortments and allows you to perform CRUD(Create, Update & Delete) operations on their information.</p>
 <p>You can Edit, Update and Delete your departments information and save it all here.</p>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -35,25 +38,33 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DeptName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NoOfEmp)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AvgAge)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Dept.EmployeeId)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.DeptId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.DeptId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.DeptId">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeptName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoOfEmp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvgAge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dept.EmployeeId)
+            </td>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.DeptId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.DeptId"> Details </a>|
+                <a asp-action="Delete" asp-route-id="@item.DeptId"> Delete </a>
+            </td>
+            }
+
+
+            
+        
+        </tr>
         }
     </tbody>
 </table>

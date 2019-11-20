@@ -24,6 +24,7 @@ namespace MyApplication
         }
 
         public IConfiguration Configuration { get; }
+        public object CompatibilityVersion { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -49,19 +50,21 @@ namespace MyApplication
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
-        }
+        
 
         //enable google login
-        //var ClientId = Configuration.GetSection("Google")["ClientId"];
-        //var ClientSecret = Configuration.GetSection("Google")["ClientId"];
+        var ClientId = Configuration.GetSection("Google")["ClientId"];
+        var ClientSecret = Configuration.GetSection("Google")["ClientId"];
 
-        //services.AddAuthentication() 
-          //  .AddGoogle(Options =>
-          //  {
-         //   options.ClientId = ClientId;
-        //    options.ClientSecret = ClientSecret;
-        //    }
-                                  //     );
+        services.AddAuthentication() 
+            .AddGoogle(Options =>
+            {
+              Options.ClientId = ClientId;
+              Options.ClientSecret = ClientSecret;
+            });
+
+            
+            }
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
