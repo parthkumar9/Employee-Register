@@ -10,7 +10,7 @@ namespace MyApplication.Models
         [Key]
         public int EmployeeId { get; set; }
 
-
+        [Required(ErrorMessage = "Employee Name is required!!")]
         [Display(Name = "Employee Name")]
         [StringLength(50)]
         public string EmpName { get; set; }
@@ -22,6 +22,8 @@ namespace MyApplication.Models
         [Display(Name = "Department Id")]
         [StringLength(50)]
         public string DeptId { get; set; }
+
+       
 
         [InverseProperty("Dept")]
         public Departments Departments { get; set; }

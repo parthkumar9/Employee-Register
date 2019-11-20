@@ -1,10 +1,11 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace MyApplication.Models
 {
-    public partial class CRUDDBContext : DbContext
+    public partial class CRUDDBContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public virtual DbSet<Departments> Departments { get; set; }
         public virtual DbSet<Employees> Employees { get; set; }
@@ -18,13 +19,15 @@ namespace MyApplication.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-7L1MEIHQ\SQLEXPRESS;Initial Catalog=CRUDDB;Integrated Security=True");
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-7L1MEIHQ\SQLEXPRESS;Initial Catalog=CRUDDB;Integrated Security=True");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //add to get identity to work so we dont get primary key errors.(Bud fix for the identity library)
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Departments>(entity =>
             {
                 entity.Property(e => e.DeptId).ValueGeneratedNever();

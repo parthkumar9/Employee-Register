@@ -11,9 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using MyApplication.Data;
 using MyApplication.Models;
 using MyApplication.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MyApplication
 {
+    [Authorize(Roles = "Administartor, Some other Role Allowed")]
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -36,7 +38,10 @@ namespace MyApplication
             services.AddDbContext<CRUDDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
+               
+                .AddRoles<ApplicationRole>()
+                .AddRoleManager<RoleManager<ApplicationRole>>()
                 .AddEntityFrameworkStores<CRUDDBContext>()
                 .AddDefaultTokenProviders();
 

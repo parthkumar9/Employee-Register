@@ -42,10 +42,16 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.DeptId)
                 </td>
+
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div>
+                            <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a> |
+                        </div>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a>
                 </td>
             </tr>
         }
