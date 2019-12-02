@@ -19,14 +19,14 @@ namespace MyApplication.Controllers
         {
             ViewData["Message"] = "Additional Information.";
 
-            return View();
+            return View("About");
         }
 
         public IActionResult Contact()
         {
             ViewData["Message"] = "My contact page.";
 
-            return View();
+            return View("Contact");
         }
 
         public IActionResult Error()
