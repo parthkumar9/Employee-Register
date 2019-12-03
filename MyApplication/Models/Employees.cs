@@ -27,5 +27,10 @@ namespace MyApplication.Models
 
         [InverseProperty("Dept")]
         public Departments Departments { get; set; }
+
+        public static implicit operator string(Employees v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

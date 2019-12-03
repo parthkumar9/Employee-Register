@@ -1,17 +1,30 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MyApplication.Controllers;
-using Microsoft.AspNetCore.Mvc;
 
-namespace EmployeeRegisterUnitTest
+namespace MyApplicationTest
 {
     [TestClass]
     public class HomeControllerTest
     {
+        //declare the home controller globally
+        HomeController homeController;
+
+        [TestInitialize]
+        //this method runs automatically before every method
+        public void TestInitialize()
+        {
+
+            //initialize the controller so we can test it
+            homeController = new HomeController();
+        }
+
+
         [TestMethod]
-        public void IndexReturnsSomething()
+        public void IndexLoadsRightView()
         {
             //Step 1: Arrange the test -> setup any objects or variables
-            var homeController = new HomeController();
+            //This step is moved to the initialize method
 
             //Step 2: Act(Call the method we want to test)
             var result = homeController.Index();
@@ -24,7 +37,7 @@ namespace EmployeeRegisterUnitTest
         public void AboutLoadsRightView()
         {
             //arrange
-            var homeController = new HomeController();
+            //var homeController = new HomeController();
             //act
             var result = homeController.About();
 
@@ -42,7 +55,7 @@ namespace EmployeeRegisterUnitTest
         public void ContactLoadsRightView()
         {
             //arrange
-            var homeController = new HomeController();
+            //var homeController = new HomeController();
             //act
             var result = homeController.Contact();
 
@@ -54,6 +67,7 @@ namespace EmployeeRegisterUnitTest
 
             //assert
             Assert.AreEqual("Contact", viewResult.ViewName);
+
         }
     }
 }
