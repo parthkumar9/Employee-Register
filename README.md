@@ -1,4 +1,4 @@
-<h1>Emplooye Register</h1>
+<h1>Employee Register</h1>
 
 <p>This Employee Register project is simple C# .NET Core MVC web application that performs CRUD operations using an SQL Server database.
 </p>
